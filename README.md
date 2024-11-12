@@ -1,0 +1,2 @@
+# birthday-calculator
+HTML内の誕生日から現在の年齢を判定するスクリプト
