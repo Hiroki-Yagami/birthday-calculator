@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年齢計算</title>
+</head>
+<body>
+  <h2>年齢計算ツール</h2>
+  
+  <!-- 埋め込み済みの誕生日 -->
+  <p id="birthdate" data-birthdate="1990-05-15">誕生日: 1990年5月15日</p>
+  
+  <p id="ageResult">年齢がここに表示されます。</p>
+
+  <script>
+    function calculateAge() {
+      // 誕生日データの取得
+      const birthdateString = document.getElementById("birthdate").getAttribute("data-birthdate");
+      const birthdate = new Date(birthdateString);
+      const today = new Date();
+      
+      let age = today.getFullYear() - birthdate.getFullYear();
+      const monthDifference = today.getMonth() - birthdate.getMonth();
+      
+      // 誕生月がまだ来ていない、または誕生月であっても誕生日がまだ来ていない場合、年齢を1引く
+      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthdate.getDate())) {
+        age--;
+      }
+      
+      document.getElementById("ageResult").innerText = `現在の年齢: ${age}歳`;
+    }
+
+    // ページ読み込み時に年齢を計算して表示
+    window.onload = calculateAge;
+  </script>
+</body>
+</html>
